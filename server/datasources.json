@@ -2,5 +2,49 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "GoogleNearbySearch": {
+    "name": "GoogleNearbySearch",
+    "baseURL": "",
+    "crud": false,
+    "connector": "rest",
+    "operations": [
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://maps.googleapis.com/maps/api/place/nearbysearch/{format=json}",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "query": {
+            "key": "{^key=}",
+            "location": "{^location:string}",
+            "radius": "{^radius=500:number}"
+          },
+          "options": {
+            "strictSSL": true,
+            "useQuerystring": true
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "nearbySearch": [
+            "location",
+            "radius"
+          ]
+        }
+      }
+    ]
+  },
+  "mongodb": {
+    "host": "0.0.0.0",
+    "port": 27017,
+    "url": "",
+    "database": "lb3dz",
+    "password": "",
+    "name": "mongodb",
+    "user": "",
+    "connector": "mongodb"
   }
 }
